@@ -5,20 +5,33 @@ class Player {
     this.color = color;
     this.moveset = moveset;
     this.lastWallhit = -1000; //Wenn man gegen eine Wand fährt soll sich der Speed halbieren.
+    this.lastBoost = -1000; //Wenn man einen Booster einsetzt soll sich der Speed verdoppeln.
     this.penalty = 1;
     this.cps = []; //Checkpoints
+    this.item = false;
   }
 
   draw() {
     fill(this.color);
     stroke("black");
     circle(this.x, this.y, 20);
+
+    if (this.item){
+      fill("yellow");
+      stroke("black");
+      triangle(int(this.x) - 5,int(this.y) +4.33,int(this.x) + 5,int(this.y) + 4.33,int(this.x),int(this.y) - 4.33)
+    }
     
     if (this.lastWallhit + 120 > frameCount) {
       this.penalty = 0.6;
     } else {
-      this.penalty = 1;
+      if (this.penalty == 2 && this.lastBoost + 120 > frameCount){
+        this.penalty = this.penalty;
+      } else {
+        this.penalty = 1;
+      }
     }
+
   }
 
   move(circles) {
@@ -76,6 +89,12 @@ class Player {
           this.x = int(this.x) - 5 * this.penalty;
         }
       }
+      //Shift Taste 
+      if (keyIsDown(16) && this.item && this.penalty != 0.6 ){
+        this.penalty = 2;
+        this.lastBoost = frameCount;
+        this.item = false;
+      }
     } else if (this.moveset == "ARROWS") {
       //Pfeiltaste oben
       if (keyIsDown(38)) {
@@ -128,6 +147,12 @@ class Player {
         if (counter != 1) {
           this.x = int(this.x) - 5 * this.penalty;
         }
+      }
+      //Numpad0
+      if (keyIsDown(96) && this.item && this.penalty != 0.6 ){
+        this.penalty = 2;
+        this.lastBoost = frameCount;
+        this.item = false;
       }
     }
 

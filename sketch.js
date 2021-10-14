@@ -6,13 +6,16 @@ let sinceMousePress = 0;
 let timer = 3;
 let players = [];
 let checkpoints = 20; //UNGEFÄHRE Checkpointanzahl
+let itemNumber = 3;
 let cp = 0; //Zum zählen der tatsächlichen Checkpointanzahl
 
 let gameTimer = 0;
+let items = [];
 
 let result;
 function preload() {
-  karte = "cords(2)";
+  let randkarte = str(int(random(2,10)) + 1)
+  karte = "cords("+randkarte+")";
   result = loadStrings("Spielfelder/" + karte + ".txt");
 
   httpGet(
@@ -70,10 +73,17 @@ function setup() {
     }
   }
 
-  item = new Item(circles[2].x,circles[2].y,"yellow")
+  for (var i = 0;i < itemNumber; i++){
+    a = int(random(1,circles.length -1));
+    item = new Item(circles[a].x,circles[a].y,"yellow")
+    append(items,item)
+  }
+  
+
 }
 
 function draw() {
+  let randkarte = int(random(3,10))
   if (gameWin) {
     return;
   }
@@ -137,19 +147,24 @@ function draw() {
       break;
     }
 
-    if (item.collide(players[player])){
-      print("true")
+    for (item in items){
+      items[item].draw()
+      if (items[item].collide(players[player])){
+        players[player].item = true;
+        items.splice(item,1)
+      }
     }
+
+    
   }
   textSize(30);
   fill("black");
+  stroke('black')
   text(
     str(int((((frameCount - gameTimer) / 30) * 10) / 10)) + "s",
     width - 100,
     50
   );
-
-  item.draw()
 }
 
 function createCircle(x, y, array) {

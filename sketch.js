@@ -12,7 +12,7 @@ let gameTimer = 0;
 
 let result;
 function preload() {
-  karte = "cords(3)";
+  karte = "cords(2)";
   result = loadStrings("Spielfelder/" + karte + ".txt");
 
   httpGet(
@@ -169,10 +169,11 @@ function win(winner) {
 
   if (scoreboard.length != 0) {
     highscore = scoreboard[0]["score"];
+    print(highscore)
     if (int(((frameCount - gameTimer) / 30) * 100) / 100 < highscore) {
       text(
         "Herzlichen Glühstrumpf, du den alten Rekord um " +
-          str(highscore - int(((frameCount - gameTimer) / 30) * 100) / 100) +
+          str(int((highscore - ((frameCount -gameTimer) / 30)) * 100) / 100) +
           "s geschlagen!",
         50,
         height / 2 + 60
@@ -180,8 +181,8 @@ function win(winner) {
     } else {
       text(
         "Dir hätten noch " +
-          str(int(((frameCount - gameTimer) / 30) * 100) / 100 - 100) +
-          "s gefehlt, um den Highscore zu schlagen!",
+          str(int(((frameCount-gameTimer) / 30 -highscore) * 100) /100) +
+          "s gefehlt, um die Bestzeit zu schlagen!",
         50,
         height / 2 + 60
       );
@@ -191,7 +192,7 @@ function win(winner) {
   let url = "https://codeweek-scoreboard-b92vu.ondigitalocean.app/score";
   let postData = {
     game: "Circlerace - " + karte,
-    userName: "DerBesteSpieler",
+    userName: winner.color,
     score: int(((frameCount - gameTimer) / 30) * 100) / 100,
   };
   httpPost(url, "json", postData);
@@ -200,3 +201,4 @@ function win(winner) {
 //Namen eintragen können beim Leaderboard
 //Optimierung (Weniger Lag)
 //https://hackmd.io/BCDS6HauTRq-U8llJTUU5Q
+

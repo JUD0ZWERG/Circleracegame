@@ -8,7 +8,8 @@ class Item{
     draw () {
         fill(this.color)
         stroke(this.color)
-        triangle(this.x - 10, this.y -10, this. x + 10, this.y - 10, this.x, this.y + 10)
+        //triangle(, , , , , )
+        triangle(int(this.x) - 10,int(this.y) +8.66,int(this.x) + 10,int(this.y) + 8.66,int(this.x),int(this.y) - 8.66)
     }
 
     collide(player){

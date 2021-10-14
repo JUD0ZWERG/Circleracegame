@@ -125,6 +125,9 @@ function draw() {
   circles[circles.length - 1].draw(); //Der Endkreis muss herausstechen
 
   for (player in players) {
+    //if (players[player].color == "lime"){
+    //  print(players[player].penalty)
+    //}
     if (frameCount - sinceMousePress < 90) {
       //Damit man sich die ersten 3 Sekunden nicht bewegen kann.
       players[player].draw();
@@ -140,7 +143,7 @@ function draw() {
     players[player].move(circles);
     players[player].draw();
     if (
-      circles[circles.length - 1].collide(players[player.x,player.y]) &&
+      circles[circles.length - 1].collide(players[player].x,players[player].y) &&
       players[player].cps.length == cp
     ) {
       win(players[player]);

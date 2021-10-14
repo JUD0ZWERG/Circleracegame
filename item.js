@@ -8,7 +8,6 @@ class Item{
     draw () {
         fill(this.color)
         stroke(this.color)
-        //triangle(, , , , , )
         triangle(int(this.x) - 10,int(this.y) +8.66,int(this.x) + 10,int(this.y) + 8.66,int(this.x),int(this.y) - 8.66)
     }
 
@@ -18,7 +17,7 @@ class Item{
         let vsum = vplayer.sub(vtriangle);
         //vsum = Abstand zwischen Spielermittelpunkt und Circlemittelpunkt
         
-        if (vsum.mag() > 10){
+        if (vsum.mag() > 8.66){
           return false
         } else {
           return true

@@ -136,6 +136,10 @@ function draw() {
       win(players[player]);
       break;
     }
+
+    if (item.collide(players[player])){
+      print("true")
+    }
   }
   textSize(30);
   fill("black");
@@ -173,7 +177,6 @@ function win(winner) {
 
   if (scoreboard.length != 0) {
     highscore = scoreboard[0]["score"];
-    print(highscore)
     if (int(((frameCount - gameTimer) / 30) * 100) / 100 < highscore) {
       text(
         "Herzlichen Glühstrumpf, du den alten Rekord um " +

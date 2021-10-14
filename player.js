@@ -39,54 +39,41 @@ class Player {
     if (this.moveset == "WASD") {
       //W Taste
       if (keyIsDown(87)) {
-        this.y = int(this.y) - 5 * this.penalty;
         for (var cir in circles) {
-          if (circles[cir].collide(this)) {
+          if (circles[cir].collide(this.x,int(this.y) - 5 * this.penalty)) {
+            this.y = int(this.y) - 5 * this.penalty
             counter = 1;
             break;
           }
-        }
-        if (counter != 1) {
-          this.y = int(this.y) + 5 * this.penalty;
         }
       }
       //S Taste
       if (keyIsDown(83)) {
-        this.y = int(this.y) + 5 * this.penalty;
         for (var cir in circles) {
-          if (circles[cir].collide(this)) {
+          if (circles[cir].collide(this.x,int(this.y) + 5 * this.penalty)) {
+            this.y = int(this.y) + 5 * this.penalty
             counter = 1;
             break;
           }
-        }
-        if (counter != 1) {
-          this.y = int(this.y) - 5 * this.penalty;
         }
       }
       //A Taste
       if (keyIsDown(65)) {
-        this.x = int(this.x) - 5 * this.penalty;
         for (var cir in circles) {
-          if (circles[cir].collide(this)) {
-            counter = 1;
+          if (circles[cir].collide(int(this.x) - 5 * this.penalty,this.y)) {
+            this.x = int(this.x) - 5 * this.penalty
             break;
           }
-        }
-        if (counter != 1) {
-          this.x = int(this.x) + 5 * this.penalty;
         }
       }
       //D Taste
       if (keyIsDown(68)) {
-        this.x = int(this.x) + 5 * this.penalty;
         for (var cir in circles) {
-          if (circles[cir].collide(this)) {
+          if (circles[cir].collide(int(this.x) + 5 * this.penalty,this.y)) {
+            this.x = int(this.x) + 5 * this.penalty;
             counter = 1;
             break;
           }
-        }
-        if (counter != 1) {
-          this.x = int(this.x) - 5 * this.penalty;
         }
       }
       //Shift Taste 
@@ -98,54 +85,41 @@ class Player {
     } else if (this.moveset == "ARROWS") {
       //Pfeiltaste oben
       if (keyIsDown(38)) {
-        this.y = int(this.y) - 5 * this.penalty;
         for (var cir in circles) {
-          if (circles[cir].collide(this)) {
+          if (circles[cir].collide(this.x,int(this.y) - 5 * this.penalty)) {
+            this.y = int(this.y) - 5 * this.penalty
             counter = 1;
             break;
           }
-        }
-        if (counter != 1) {
-          this.y = int(this.y) + 5 * this.penalty;
         }
       }
       //Pfeiltaste unten
       if (keyIsDown(40)) {
-        this.y = int(this.y) + 5 * this.penalty;
         for (var cir in circles) {
-          if (circles[cir].collide(this)) {
+          if (circles[cir].collide(this.x,int(this.y) + 5 * this.penalty)) {
+            this.y = int(this.y) + 5 * this.penalty
             counter = 1;
             break;
           }
-        }
-        if (counter != 1) {
-          this.y = int(this.y) - 5 * this.penalty;
         }
       }
       //Pfeiltaste links
       if (keyIsDown(37)) {
-        this.x = int(this.x) - 5 * this.penalty;
         for (var cir in circles) {
-          if (circles[cir].collide(this)) {
-            counter = 1;
+          if (circles[cir].collide(int(this.x) - 5 * this.penalty,this.y)) {
+            this.x = int(this.x) - 5 * this.penalty
             break;
           }
-        }
-        if (counter != 1) {
-          this.x = int(this.x) + 5 * this.penalty;
         }
       }
       //Pfeiltaste rechts
       if (keyIsDown(39)) {
-        this.x = int(this.x) + 5 * this.penalty;
         for (var cir in circles) {
-          if (circles[cir].collide(this)) {
+          if (circles[cir].collide(int(this.x) + 5 * this.penalty,this.y)) {
+            this.x = int(this.x) + 5 * this.penalty;
             counter = 1;
             break;
           }
-        }
-        if (counter != 1) {
-          this.x = int(this.x) - 5 * this.penalty;
         }
       }
       //Numpad0
@@ -177,13 +151,13 @@ class Player {
     }
 
     for (var cir in circles) {
-      if (circles[cir].collide(this) && circles[cir].color == "#00e5ff") {
+      if (circles[cir].collide(this.x,this.y) && circles[cir].color == "#00e5ff") {
         if (!this.cps.includes(circles[cir])) {
           append(this.cps, circles[cir]);
           circles[cir].halfcp();
         }
       } else if (
-        circles[cir].collide(this) &&
+        circles[cir].collide(this.x,this.y) &&
         circles[cir].color == "#ccffff"
       ) {
         if (!this.cps.includes(circles[cir])) {

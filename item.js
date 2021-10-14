@@ -11,8 +11,8 @@ class Item{
         triangle(int(this.x) - 10,int(this.y) +8.66,int(this.x) + 10,int(this.y) + 8.66,int(this.x),int(this.y) - 8.66)
     }
 
-    collide(player){
-        let vplayer = createVector(player.x,player.y)
+    collide(playerx,playery){
+        let vplayer = createVector(playerx,playery)
         let vtriangle = createVector(this.x,this.y);
         let vsum = vplayer.sub(vtriangle);
         //vsum = Abstand zwischen Spielermittelpunkt und Circlemittelpunkt

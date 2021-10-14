@@ -13,8 +13,8 @@ class Limitationcircle {
     circle(this.x, this.y, this.diameter);
   }
   
-  collide(player){
-    let vplayer = createVector(player.x,player.y)
+  collide(playerx,playery){
+    let vplayer = createVector(playerx,playery)
     let vcircle = createVector(this.x,this.y);
     let vsum = vplayer.sub(vcircle);
     //vsum = Abstand zwischen Spielermittelpunkt und Circlemittelpunkt

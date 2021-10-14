@@ -140,7 +140,7 @@ function draw() {
     players[player].move(circles);
     players[player].draw();
     if (
-      circles[circles.length - 1].collide(players[player]) &&
+      circles[circles.length - 1].collide(players[player.x,player.y]) &&
       players[player].cps.length == cp
     ) {
       win(players[player]);
@@ -149,7 +149,7 @@ function draw() {
 
     for (item in items){
       items[item].draw()
-      if (items[item].collide(players[player])){
+      if (items[item].collide(players[player].x,players[player].y)){
         players[player].item = true;
         items.splice(item,1)
       }

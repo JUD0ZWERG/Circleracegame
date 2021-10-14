@@ -51,7 +51,7 @@ class Player {
         }
       }
       //S Taste
-      if (keyIsDown(83)) {
+       else if (keyIsDown(83)) {
         this.y = int(this.y) + 5 * this.penalty;
         for (var cir in circles) {
           if (circles[cir].collide(this)) {
@@ -64,7 +64,7 @@ class Player {
         }
       }
       //A Taste
-      if (keyIsDown(65)) {
+       else if (keyIsDown(65)) {
         this.x = int(this.x) - 5 * this.penalty;
         for (var cir in circles) {
           if (circles[cir].collide(this)) {
@@ -77,7 +77,7 @@ class Player {
         }
       }
       //D Taste
-      if (keyIsDown(68)) {
+       else if (keyIsDown(68)) {
         this.x = int(this.x) + 5 * this.penalty;
         for (var cir in circles) {
           if (circles[cir].collide(this)) {
@@ -110,7 +110,7 @@ class Player {
         }
       }
       //Pfeiltaste unten
-      if (keyIsDown(40)) {
+      else if (keyIsDown(40)) {
         this.y = int(this.y) + 5 * this.penalty;
         for (var cir in circles) {
           if (circles[cir].collide(this)) {
@@ -123,7 +123,7 @@ class Player {
         }
       }
       //Pfeiltaste links
-      if (keyIsDown(37)) {
+      else if (keyIsDown(37)) {
         this.x = int(this.x) - 5 * this.penalty;
         for (var cir in circles) {
           if (circles[cir].collide(this)) {
@@ -136,7 +136,7 @@ class Player {
         }
       }
       //Pfeiltaste rechts
-      if (keyIsDown(39)) {
+      else if (keyIsDown(39)) {
         this.x = int(this.x) + 5 * this.penalty;
         for (var cir in circles) {
           if (circles[cir].collide(this)) {

@@ -69,6 +69,8 @@ function setup() {
       cp++;
     }
   }
+
+  item = new Item(circles[2].x,circles[2].y,"yellow")
 }
 
 function draw() {
@@ -142,6 +144,8 @@ function draw() {
     width - 100,
     50
   );
+
+  item.drawJ()
 }
 
 function createCircle(x, y, array) {

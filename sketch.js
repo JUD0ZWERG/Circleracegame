@@ -145,7 +145,7 @@ function draw() {
     50
   );
 
-  item.drawJ()
+  item.draw()
 }
 
 function createCircle(x, y, array) {

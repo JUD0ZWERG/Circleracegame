@@ -12,6 +12,8 @@ let cp = 0; //Zum zählen der tatsächlichen Checkpointanzahl
 let gameTimer = 0;
 let items = [];
 
+let scoreboard;
+
 let result;
 function preload() {
   let randkarte = str(int(random(2, 11)) + 1)
@@ -83,7 +85,6 @@ function setup() {
 }
 
 function draw() {
-  let randkarte = int(random(3, 10))
   if (gameWin) {
     return;
   }
@@ -229,8 +230,4 @@ function win(winner) {
 //Namen eintragen können beim Leaderboard
 
 //https://hackmd.io/BCDS6HauTRq-U8llJTUU5Q
-
-//Github
-
-//Bugs: Orangener Spieler ist zu oft langsam/zu lange
 

@@ -20,10 +20,9 @@ function preload() {
   karte = "cords(" + randkarte + ")";
   result = loadStrings("Spielfelder/" + karte + ".txt");
 
+  url = "https://codeweek-scoreboard-b92vu.ondigitalocean.app/score?q=Circlerace - " + karte + "&_sort=score&_limit=1"
   httpGet(
-    "https://codeweek-scoreboard-b92vu.ondigitalocean.app/score?q=Circlerace - " +
-    karte +
-    "&_sort=score&_limit=1",
+    url,
     "json",
     false,
     function (response) {
@@ -85,6 +84,11 @@ function setup() {
 }
 
 function draw() {
+
+  if (scoreboard[0]["score"] == 0) {
+    print(url)
+  }
+
   if (gameWin) {
     return;
   }

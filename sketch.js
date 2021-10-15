@@ -84,9 +84,6 @@ function setup() {
 }
 
 function draw() {
-  if (scoreboard[0]["score"] == 0) {
-    print(url)
-  }
 
   if (gameWin) {
     return;

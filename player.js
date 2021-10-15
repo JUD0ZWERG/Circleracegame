@@ -62,7 +62,7 @@ class Player {
         for (var cir in circles) {
           if (circles[cir].collide(int(this.x) - 5 * this.penalty, this.y)) {
             this.x = int(this.x) - 5 * this.penalty
-            counter = 1
+            counter = 1;
             break;
           }
         }

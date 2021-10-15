@@ -14,14 +14,14 @@ let items = [];
 
 let result;
 function preload() {
-  let randkarte = str(int(random(2,11)) + 1)
-  karte = "cords("+randkarte+")";
+  let randkarte = str(int(random(2, 11)) + 1)
+  karte = "cords(" + randkarte + ")";
   result = loadStrings("Spielfelder/" + karte + ".txt");
 
   httpGet(
     "https://codeweek-scoreboard-b92vu.ondigitalocean.app/score?q=Circlerace - " +
-      karte +
-      "&_sort=score&_limit=1",
+    karte +
+    "&_sort=score&_limit=1",
     "json",
     false,
     function (response) {
@@ -73,17 +73,17 @@ function setup() {
     }
   }
 
-  for (var i = 0;i < itemNumber; i++){
-    a = int(random(1,circles.length -1));
-    item = new Item(circles[a].x,circles[a].y,"yellow")
-    append(items,item)
+  for (var i = 0; i < itemNumber; i++) {
+    a = int(random(1, circles.length - 1));
+    item = new Item(circles[a].x, circles[a].y, "yellow")
+    append(items, item)
   }
-  
+
 
 }
 
 function draw() {
-  let randkarte = int(random(3,10))
+  let randkarte = int(random(3, 10))
   if (gameWin) {
     return;
   }
@@ -143,22 +143,22 @@ function draw() {
     players[player].move(circles);
     players[player].draw();
     if (
-      circles[circles.length - 1].collide(players[player].x,players[player].y) &&
+      circles[circles.length - 1].collide(players[player].x, players[player].y) &&
       players[player].cps.length == cp
     ) {
       win(players[player]);
       break;
     }
 
-    for (item in items){
+    for (item in items) {
       items[item].draw()
-      if (items[item].collide(players[player].x,players[player].y)){
+      if (items[item].collide(players[player].x, players[player].y)) {
         players[player].item = true;
-        items.splice(item,1)
+        items.splice(item, 1)
       }
     }
 
-    
+
   }
   textSize(30);
   fill("black");
@@ -186,8 +186,8 @@ function win(winner) {
   );
   text(
     "und benötigte dafür " +
-      str(int(((frameCount - gameTimer) / 30) * 100) / 100) +
-      "s",
+    str(int(((frameCount - gameTimer) / 30) * 100) / 100) +
+    "s",
     50,
     height / 2 + 30
   );
@@ -195,19 +195,20 @@ function win(winner) {
 
   if (scoreboard.length != 0) {
     highscore = scoreboard[0]["score"];
+    print(highscore)
     if (int(((frameCount - gameTimer) / 30) * 100) / 100 < highscore) {
       text(
         "Herzlichen Glühstrumpf, du den alten Rekord um " +
-          str(int((highscore - ((frameCount -gameTimer) / 30)) * 100) / 100) +
-          "s geschlagen!",
+        str(int((highscore - ((frameCount - gameTimer) / 30)) * 100) / 100) +
+        "s geschlagen!",
         50,
         height / 2 + 60
       );
     } else {
       text(
         "Dir hätten noch " +
-          str(int(((frameCount-gameTimer) / 30 -highscore) * 100) /100) +
-          "s gefehlt, um die Bestzeit zu schlagen!",
+        str(int(((frameCount - gameTimer) / 30 - highscore) * 100) / 100) +
+        "s gefehlt, um die Bestzeit zu schlagen!",
         50,
         height / 2 + 60
       );
@@ -223,7 +224,13 @@ function win(winner) {
   httpPost(url, "json", postData);
 }
 
+
+
 //Namen eintragen können beim Leaderboard
-//Optimierung (Weniger Lag)
+
 //https://hackmd.io/BCDS6HauTRq-U8llJTUU5Q
+
+//Github
+
+//Bugs: Orangener Spieler ist zu oft langsam/zu lange
 

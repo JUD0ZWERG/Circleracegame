@@ -16,16 +16,16 @@ class Player {
     stroke("black");
     circle(this.x, this.y, 20);
 
-    if (this.item){
+    if (this.item) {
       fill("yellow");
       stroke("black");
-      triangle(int(this.x) - 5,int(this.y) +4.33,int(this.x) + 5,int(this.y) + 4.33,int(this.x),int(this.y) - 4.33)
+      triangle(int(this.x) - 5, int(this.y) + 4.33, int(this.x) + 5, int(this.y) + 4.33, int(this.x), int(this.y) - 4.33)
     }
-    
+
     if (this.lastWallhit + 120 > frameCount) {
       this.penalty = 0.6;
     } else {
-      if (this.penalty == 2 && this.lastBoost + 120 > frameCount){
+      if (this.penalty == 2 && this.lastBoost + 120 > frameCount) {
         this.penalty = this.penalty;
       } else {
         this.penalty = 1;
@@ -40,7 +40,7 @@ class Player {
       //W Taste
       if (keyIsDown(87)) {
         for (var cir in circles) {
-          if (circles[cir].collide(this.x,int(this.y) - 5 * this.penalty)) {
+          if (circles[cir].collide(this.x, int(this.y) - 5 * this.penalty)) {
             this.y = int(this.y) - 5 * this.penalty
             counter = 1;
             break;
@@ -50,7 +50,7 @@ class Player {
       //S Taste
       if (keyIsDown(83)) {
         for (var cir in circles) {
-          if (circles[cir].collide(this.x,int(this.y) + 5 * this.penalty)) {
+          if (circles[cir].collide(this.x, int(this.y) + 5 * this.penalty)) {
             this.y = int(this.y) + 5 * this.penalty
             counter = 1;
             break;
@@ -60,7 +60,7 @@ class Player {
       //A Taste
       if (keyIsDown(65)) {
         for (var cir in circles) {
-          if (circles[cir].collide(int(this.x) - 5 * this.penalty,this.y)) {
+          if (circles[cir].collide(int(this.x) - 5 * this.penalty, this.y)) {
             this.x = int(this.x) - 5 * this.penalty
             counter = 1
             break;
@@ -70,7 +70,7 @@ class Player {
       //D Taste
       if (keyIsDown(68)) {
         for (var cir in circles) {
-          if (circles[cir].collide(int(this.x) + 5 * this.penalty,this.y)) {
+          if (circles[cir].collide(int(this.x) + 5 * this.penalty, this.y)) {
             this.x = int(this.x) + 5 * this.penalty;
             counter = 1;
             break;
@@ -78,7 +78,7 @@ class Player {
         }
       }
       //Shift Taste 
-      if (keyIsDown(16) && this.item && this.penalty != 0.6 ){
+      if (keyIsDown(16) && this.item && this.penalty != 0.6) {
         this.penalty = 2;
         this.lastBoost = frameCount;
         this.item = false;
@@ -87,7 +87,7 @@ class Player {
       //Pfeiltaste oben
       if (keyIsDown(38)) {
         for (var cir in circles) {
-          if (circles[cir].collide(this.x,int(this.y) - 5 * this.penalty)) {
+          if (circles[cir].collide(this.x, int(this.y) - 5 * this.penalty)) {
             this.y = int(this.y) - 5 * this.penalty
             counter = 1;
             break;
@@ -97,7 +97,7 @@ class Player {
       //Pfeiltaste unten
       if (keyIsDown(40)) {
         for (var cir in circles) {
-          if (circles[cir].collide(this.x,int(this.y) + 5 * this.penalty)) {
+          if (circles[cir].collide(this.x, int(this.y) + 5 * this.penalty)) {
             this.y = int(this.y) + 5 * this.penalty
             counter = 1;
             break;
@@ -107,9 +107,9 @@ class Player {
       //Pfeiltaste links
       if (keyIsDown(37)) {
         for (var cir in circles) {
-          if (circles[cir].collide(int(this.x) - 5 * this.penalty,this.y)) {
+          if (circles[cir].collide(int(this.x) - 5 * this.penalty, this.y)) {
             this.x = int(this.x) - 5 * this.penalty
-            counter = 0
+            counter = 1;
             break;
           }
         }
@@ -117,7 +117,7 @@ class Player {
       //Pfeiltaste rechts
       if (keyIsDown(39)) {
         for (var cir in circles) {
-          if (circles[cir].collide(int(this.x) + 5 * this.penalty,this.y)) {
+          if (circles[cir].collide(int(this.x) + 5 * this.penalty, this.y)) {
             this.x = int(this.x) + 5 * this.penalty;
             counter = 1;
             break;
@@ -125,15 +125,15 @@ class Player {
         }
       }
       //Numpad0
-      if (keyIsDown(96) && this.item && this.penalty != 0.6 ){
+      if (keyIsDown(96) && this.item && this.penalty != 0.6) {
         this.penalty = 2;
         this.lastBoost = frameCount;
         this.item = false;
       }
     }
 
-    
-    
+
+
 
     if (this.moveset == "WASD") {
       if (keyIsPressed) {
@@ -156,13 +156,13 @@ class Player {
     }
 
     for (var cir in circles) {
-      if (circles[cir].collide(this.x,this.y) && circles[cir].color == "#00e5ff") {
+      if (circles[cir].collide(this.x, this.y) && circles[cir].color == "#00e5ff") {
         if (!this.cps.includes(circles[cir])) {
           append(this.cps, circles[cir]);
           circles[cir].halfcp();
         }
       } else if (
-        circles[cir].collide(this.x,this.y) &&
+        circles[cir].collide(this.x, this.y) &&
         circles[cir].color == "#ccffff"
       ) {
         if (!this.cps.includes(circles[cir])) {

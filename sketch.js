@@ -16,7 +16,7 @@ let scoreboard;
 
 let result;
 function preload() {
-  let randkarte = str(int(random(2, 11)) + 1)
+  let randkarte = str(int(random(2, 17)) + 1)
   karte = "cords(" + randkarte + ")";
   result = loadStrings("Spielfelder/" + karte + ".txt");
 
